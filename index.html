@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            /* fallback for old browsers */
+            background: #a1c4fd;
+
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: -webkit-linear-gradient(to bottom, rgba(161, 196, 253, 0.5), rgba(194, 233, 251, 0.5));
+
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: linear-gradient(to bottom, rgba(161, 196, 253, 0.5), rgba(194, 233, 251, 0.5))
+        }
+    </style>
+    <script>
+        function show(shown, hidden) {
+            document.getElementById(shown).style.display = 'block';
+            document.getElementById(hidden).style.display = 'none';
+            return true;
+        }
+    </script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>SKICLUB GPS at Wachusett Mountain</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top mb-2">
+    <div class="container-fluid">
+        <!--<a class="navbar-brand" href="#">SKICLUB</a>-->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="#home">SKICLUB GPS</a>
+                <!--<a class="nav-link" href="#home">Why GPS?</a>-->
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" onclick="return show('pass','how')" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Pass Options
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" onclick="return show('pass','how');" href="#gold">Gold</a></li>
+                        <li><a class="dropdown-item" onclick="return show('pass','how');" href="#silver">Silver</a></li>
+                        <li><a class="dropdown-item" onclick="return show('pass','how');" href="#bronze">Bronze</a></li>
+                        <li><a class="dropdown-item" href="#steel" onclick="return show('pass','how');">Steel</a></li>
+                    </ul>
+                </div>
+                <a class="nav-link" onclick="return show('how','pass');">How to Get the Discount</a>
+            </div>
+        </div>
+        <div>
+            <a href="https://www.facebook.com/skiclubgps" class="text-reset">
+                <span>Like Us on Facebook</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-facebook" viewBox="0 0 16 16">
+                    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</nav>
+<div class="gradient-custom">
+    <div class="container mb-4" id="home">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body bg-light">
+                        <h1 class="card-title text-center ">Why use GPS Passes?</h1>
+                        <hr width=70% style="margin-left:15%"/>
+                        <h5 class="text-center mb-3">A GPS Pass is equivalent to the non GPS version, but at a lower
+                            price for a group rate. For the passes which have a GPS version, they
+                            can and do sell out separate from the regular version. Buy early to avoid sellout as well as
+                            to avoid price increases as the season approaches. </h5>
+                        <h5 class="text-center mb-3"> This group is started with the goal to get more people to take advantage of these passes.
+                            Tell your friends and family to use a GPS club code like <span
+                                    class="text-primary">SKICLUB</span> GPS to save money on your pass. </h5>
+                        <h5 class="text-center mb-3"> Also follow us on Facebook to keep updated on pass availability</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+    <div class="container" id="pass">
+        <div class="container mb-4">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body bg-light">
+                            <h1 class="card-title text-center ">Season Pass Options</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center" id="gold">
+            <div class="col-7">
+                <div class="card">
+                    <div class="card-body bg-warning">
+                        <h2 class="card-title text-center ">Gold</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <!--<img src="..." class="card-img-top" alt="...">-->
+                    <div class="card-body bg-warning">
+                        <h2 class="card-title text-center">Gold</h2>
+                    </div>
+                    <h3 class="card-title text-center mt-3 mb-1">$789 <span class="text-muted"> (Save $10)</span>
+                    </h3>
+                    <hr/>
+                    <h5 class="text-center">No Blockouts ✅</h5>
+                    <hr width=70% style="margin-left:15%"/>
+                    <h5 class="text-center mb-3">Age 13-64 🧑</h5>
+                    <a role="button" class="btn bg-warning disabled"
+                       href="https://www.wachusett.com/Tickets-Passes/GPS-Club.aspx">
+                        <h4 class="text-center align-middle">Sold Out</h4>
+                    </a>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <!--<img src="..." class="card-img-top" alt="...">-->
+                    <div class="card-body bg-warning">
+                        <h2 class="card-title text-center">Junior Gold</h2>
+                    </div>
+                    <h3 class="card-title text-center mt-3 mb-1">$489 <span class="text-muted"> (Save $10)</span>
+                    </h3>
+                    <hr/>
+                    <h5 class="text-center">No Blockouts ✅</h5>
+                    <hr width=70% style="margin-left:15%"/>
+                    <h5 class="text-center mb-3">Age 6-12 🧒</h5>
+                    <a role="button" class="btn bg-warning disabled"
+                       href="https://www.wachusett.com/Tickets-Passes/GPS-Club.aspx">
+                        <h4 class="text-center align-middle">Sold Out</h4>
+                    </a>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <!--<img src="..." class="card-img-top" alt="...">-->
+                    <div class="card-body bg-warning">
+                        <h2 class="card-title text-center">Senior Gold</h2>
+                    </div>
+                    <h3 class="card-title text-center mt-3 mb-1">$489 <span class="text-muted"> (Save $10)</span>
+                    </h3>
+                    <hr/>
+                    <h5 class="text-center">No Blockouts ✅</h5>
+                    <hr width=70% style="margin-left:15%"/>
+                    <h5 class="text-center mb-3">Age 65+ 🧓</h5>
+                    <a role="button" class="btn bg-warning disabled"
+                       href="https://www.wachusett.com/Tickets-Passes/GPS-Club.aspx">
+                        <h4 class="text-center align-middle">Sold Out</h4>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-4" id="silver">
+            <div class="col-7">
+                <div class="card">
+                    <div class="card-body" style="background:silver">
+                        <h2 class="card-title text-center ">Silver</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <div class="card">
+                    <!--<img src="..." class="card-img-top" alt="...">-->
+                    <div class="card-body bg-muted" style="background:silver">
+                        <h2 class="card-title text-center">Silver</h2>
+                    </div>
+                    <h3 class="card-title text-center mt-3 mb-1">$539 <span class="text-muted"> (Save $10)</span>
+                    </h3>
+                    <hr/>
+                    <h5 class="text-center">All Nights ✅</h5>
+                    <h5 class="text-center">Weekends before 12/25 ✅</h5>
+                    <h5 class="text-center">Weekends after 2/25 ✅</h5>
+                    <h5 class="text-center">Weekday Non Holiday ✅</h5>
+                    <hr width=70% style="margin-left:15%"/>
+                    <h5 class="text-center mb-3">Age 6+ 🧑🧒🧓</h5>
+                    <a role="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn disabled" style="background:silver"
+                       href="https://www.wachusett.com/Tickets-Passes/GPS-Club.aspx">
+                        <h4 class="text-center align-middle">Sold Out</h4>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-4" id="bronze">
+            <div class="col-7">
+                <div class="card">
+                    <div class="card-body" style="background:#CD7F32">
+                        <h2 class="card-title text-center ">Bronze</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <!--<img src="..." class="card-img-top" alt="...">-->
+                    <div class="card-body " style="background:#CD7F32">
+                        <h2 class="card-title text-center">Bronze</h2>
+                    </div>
+                    <h3 class="card-title text-center mt-3 mb-1">$419 <span class="text-muted"> (Save $10)</span>
+                    </h3>
+                    <hr/>
+                    <h5 class="text-center">All Nights ✅</h5>
+                    <h5 class="text-center">Weekday Non Holiday ✅</h5>
+                    <hr width=70% style="margin-left:15%"/>
+                    <h5 class="text-center mb-3">Age 13-64 🧑</h5>
+                    <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn" style="background:#CD7F32">
+                        <h4 class="text-center align-middle">Buy Now</h4>
+                    </button>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <!--<img src="..." class="card-img-top" alt="...">-->
+                    <div class="card-body " style="background:#CD7F32">
+                        <h2 class="card-title text-center">Junior Bronze</h2>
+                    </div>
+                    <h3 class="card-title text-center mt-3 mb-1">$399 <span class="text-muted"> (Save $10)</span>
+                    </h3>
+                    <hr/>
+                    <h5 class="text-center">All Nights ✅</h5>
+                    <h5 class="text-center">Weekday Non Holiday ✅</h5>
+                    <hr width=70% style="margin-left:15%"/>
+                    <h5 class="text-center mb-3">Age 6-12 🧒</h5>
+                    <a role="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn disabled" style="background:#CD7F32"
+                       href="https://www.wachusett.com/Tickets-Passes/GPS-Club.aspx">
+                        <h4 class="text-center align-middle">Sold Out</h4>
+                    </a>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <!--<img src="..." class="card-img-top" alt="...">-->
+                    <div class="card-body " style="background:#CD7F32">
+                        <h2 class="card-title text-center">Senior Bronze</h2>
+                    </div>
+                    <h3 class="card-title text-center mt-3 mb-1">$399 <span class="text-muted"> (Save $10)</span>
+                    </h3>
+                    <hr/>
+                    <h5 class="text-center">All Nights ✅</h5>
+                    <h5 class="text-center">Weekday Non Holiday ✅</h5>
+                    <hr width=70% style="margin-left:15%"/>
+                    <h5 class="text-center mb-3">Age 65+ 🧓</h5>
+                    <a role="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn disabled" style="background:#CD7F32"
+                       href="https://www.wachusett.com/Tickets-Passes/GPS-Club.aspx">
+                        <h4 class="text-center align-middle">Sold Out</h4>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-4" id="steel">
+            <div class="col-7">
+                <div class="card">
+                    <div class="card-body" style="background:#71797E">
+                        <h2 class="card-title text-center text-light">Steel</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <div class="card">
+                    <!--<img src="..." class="card-img-top" alt="...">-->
+                    <div class="card-body bg-muted" style="background:#71797E">
+                        <h2 class="card-title text-center text-light">Steel</h2>
+                    </div>
+                    <h3 class="card-title text-center mt-3 mb-1">$539 <span class="text-muted"> (Save $10)</span>
+                    </h3>
+                    <hr/>
+                    <h5 class="text-center">Weekday Non Holiday ✅</h5>
+                    <hr width=70% style="margin-left:15%"/>
+                    <h5 class="text-center mb-3">Age 6+ 🧑🧒🧓</h5>
+                    <a role="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn disabled" style="background:#71797E"
+                       href="https://www.wachusett.com/Tickets-Passes/GPS-Club.aspx">
+                        <h4 class="text-center align-middle text-light">Sold Out</h4>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container" id="how" style="display: none">
+        <div class="row justify-content-center">
+            <h2 class="text-center">How to Use the Discount</h2>
+            <div class="col-10 text-center">
+                <h3>Add the requested GPS pass to your cart and begin checkout. Enter <span
+                        class="text-info">SKICLUB</span> as the GPS Club name in checkout as shown below. </h3>
+                <img src="https://i.imgur.com/22Q7Qjv.png" class="card-img-top" alt="...">
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Redirecting you to Wachusett</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Remember to use the <span class="text-info">SKICLUB</span> code at Checkout to get the discount.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a role="button" class="btn btn-primary"
+                       href="https://www.wachusett.com/Tickets-Passes/GPS-Club.aspx">
+                        Proceed
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer -->
+<footer class="text-lg-start bg-light text-muted">
+    <!-- Section: Social media -->
+    <!--<section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">-->
+    <!-- Left -->
+    <!--  <div class="me-5 d-none d-lg-block">-->
+    <!--    <span>Follow us on our socials for more information on passes:</span>-->
+    <!--    <a href="https://www.facebook.com/skiclubgps" class="text-reset">-->
+    <!--      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">-->
+    <!--        <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />-->
+    <!--      </svg>-->
+    <!--    </a>-->
+    <!--  </div>-->
+    <!-- Left -->
+    <!-- Right -->
+    <!--  <div>-->
+
+    <!--  </div>-->
+    <!-- Right -->
+    <!--</section>-->
+    <!-- Section: Links  -->
+    <!-- Copyright -->
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);"> © 2022 Copyright: <a
+            class="text-reset fw-bold" href="https://mdbootstrap.com/">skiclub-gps.com</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->
+</body>
+</html>
