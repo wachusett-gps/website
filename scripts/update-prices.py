@@ -37,8 +37,6 @@ class PassTileParser(HTMLParser):
             return
         values = dict(attrs)
         tier = (values.get("themecolor") or "").lower()
-        if tier not in {"gold", "silver", "bronze"}:
-            return
         if values.get("published", "true").lower() != "true":
             return
         try:
@@ -89,11 +87,21 @@ def fetch_price_set(source_url: str, token: str) -> tuple[dict, str | None]:
             )
 
         variant = variants[0]
+        product_name = product.get("ProductName") or ""
+        if tier not in {"gold", "silver", "bronze", "steel"}:
+            tier_match = re.search(r"\b(Gold|Silver|Bronze|Steel)\b", product_name, re.IGNORECASE)
+            if not tier_match:
+                continue
+            tier = tier_match.group(1).lower()
+
         variant_name = variant.get("VariantName") or variant.get("SEDescription") or ""
-        age_match = re.match(r"(Adult|Junior|Senior)\b", variant_name, re.IGNORECASE)
-        if not age_match:
-            raise RuntimeError(f"Could not classify pass variant: {variant_name!r}")
-        key = f"{tier}_{age_match.group(1).lower()}"
+        if tier == "steel":
+            key = "steel"
+        else:
+            age_match = re.match(r"(Adult|Junior|Senior)\b", variant_name, re.IGNORECASE)
+            if not age_match:
+                raise RuntimeError(f"Could not classify pass variant: {variant_name!r}")
+            key = f"{tier}_{age_match.group(1).lower()}"
         if key in passes:
             raise RuntimeError(f"Wachusett published duplicate pass variant: {key}")
 
@@ -101,7 +109,6 @@ def fetch_price_set(source_url: str, token: str) -> tuple[dict, str | None]:
         if not isinstance(price, (int, float)) or price <= 0:
             raise RuntimeError(f"Invalid price for {key}: {price!r}")
 
-        product_name = product.get("ProductName") or ""
         if season is None:
             season_match = re.search(r"\b\d{2}/\d{2}\b", product_name)
             season = season_match.group(0) if season_match else None
@@ -136,7 +143,8 @@ def fetch_prices() -> dict:
         )
 
     passes = {}
-    for key in sorted(EXPECTED_KEYS):
+    paired_keys = EXPECTED_KEYS | ({"steel"} if "steel" in regular_passes and "steel" in gps_passes else set())
+    for key in sorted(paired_keys):
         regular = regular_passes[key]
         gps = gps_passes[key]
         if gps["price"] > regular["price"]:

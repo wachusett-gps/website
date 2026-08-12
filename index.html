@@ -576,23 +576,25 @@
             </div>
         </div>
 
-        <div class="section-heading heading-steel p-3 mb-3" id="steel">
-            <h2 class="h3 mb-0">Steel Pass</h2>
-        </div>
-        <div class="row justify-content-center mb-4">
-            <div class="col-md-5 col-lg-4">
-                <article class="card pass-card">
-                    <div class="card-header heading-steel py-3"><h3 class="h5 mb-0">Steel</h3></div>
-                    <div class="card-body">
-                        <div class="price fs-5">Not currently listed</div>
-                        <div class="price-note">No Steel price is currently published on Wachusett's season pass page</div>
-                        <ul class="feature-list">
-                            <li>Non-holiday Mon–Thu days ✓</li>
-                            <li>Age 6+</li>
-                        </ul>
-                        <a class="btn text-white" style="background:#71797e" href="https://www.wachusett.com/tickets-passes/season-passes/season-passes/" target="_blank" rel="noopener">Check availability</a>
-                    </div>
-                </article>
+        <div id="steel-section" hidden>
+            <div class="section-heading heading-steel p-3 mb-3" id="steel">
+                <h2 class="h3 mb-0">Steel Pass</h2>
+            </div>
+            <div class="row justify-content-center mb-4">
+                <div class="col-md-5 col-lg-4">
+                    <article class="card pass-card">
+                        <div class="card-header heading-steel py-3"><h3 class="h5 mb-0">Steel</h3></div>
+                        <div class="card-body">
+                            <div class="price" data-price-key="steel">Checking price…</div>
+                            <div class="price-note">GPS group price</div>
+                            <ul class="feature-list">
+                                <li>Non-holiday Mon–Thu days ✓</li>
+                                <li>Age 6+</li>
+                            </ul>
+                            <button class="btn text-white buy-button" style="background:#71797e" type="button" data-bs-toggle="modal" data-bs-target="#buyModal" data-pass-name="Steel">Buy at Wachusett</button>
+                        </div>
+                    </article>
+                </div>
             </div>
         </div>
 
@@ -646,6 +648,9 @@
             return response.json();
         })
         .then((data) => {
+            const steelSection = document.getElementById('steel-section');
+            steelSection.hidden = !(data.passes.steel && data.passes.steel.published);
+
             priceElements.forEach((element) => {
                 const pass = data.passes[element.dataset.priceKey];
                 const note = element.nextElementSibling;
