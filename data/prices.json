@@ -1,0 +1,79 @@
+{
+  "source": "https://www.wachusett.com/tickets-passes/season-passes/season-passes/",
+  "season": "26/27",
+  "updated_at": "2026-08-11T18:00:00Z",
+  "passes": {
+    "gold_adult": {
+      "product_id": 10,
+      "variant_id": 11,
+      "product_name": "26/27 Gold Season Pass",
+      "variant_name": "Adult (13-64)",
+      "price": 869,
+      "published": true
+    },
+    "gold_junior": {
+      "product_id": 10,
+      "variant_id": 1542,
+      "product_name": "26/27 Gold Season Pass",
+      "variant_name": "Junior (6-12)",
+      "price": 649,
+      "published": true
+    },
+    "gold_senior": {
+      "product_id": 10,
+      "variant_id": 1543,
+      "product_name": "26/27 Gold Season Pass",
+      "variant_name": "Senior (65+)",
+      "price": 649,
+      "published": true
+    },
+    "silver_adult": {
+      "product_id": 11,
+      "variant_id": 12,
+      "product_name": "26/27 Silver Season Pass",
+      "variant_name": "Adult (13-64)",
+      "price": 649,
+      "published": true
+    },
+    "silver_junior": {
+      "product_id": 11,
+      "variant_id": 2274,
+      "product_name": "26/27 Silver Season Pass",
+      "variant_name": "Junior (6-12)",
+      "price": 589,
+      "published": true
+    },
+    "silver_senior": {
+      "product_id": 11,
+      "variant_id": 2275,
+      "product_name": "26/27 Silver Season Pass",
+      "variant_name": "Senior (65+)",
+      "price": 589,
+      "published": true
+    },
+    "bronze_adult": {
+      "product_id": 12,
+      "variant_id": 13,
+      "product_name": "26/27 Bronze Season Pass",
+      "variant_name": "Adult (13-64)",
+      "price": 499,
+      "published": true
+    },
+    "bronze_junior": {
+      "product_id": 12,
+      "variant_id": 1540,
+      "product_name": "26/27 Bronze Season Pass",
+      "variant_name": "Junior (6-12)",
+      "price": 479,
+      "published": true
+    },
+    "bronze_senior": {
+      "product_id": 12,
+      "variant_id": 1541,
+      "product_name": "26/27 Bronze Season Pass",
+      "variant_name": "Senior (65+)",
+      "price": 479,
+      "published": true
+    }
+  }
+}

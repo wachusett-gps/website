@@ -1,1 +1,1 @@
-Sitemap: http://skiclub-gps.com/sitemap.xml
+Sitemap: https://skiclub-gps.com/sitemap.xml

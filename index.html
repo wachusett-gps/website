@@ -1,440 +1,674 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <style>
-        body {
-            /* fallback for old browsers */
-            background: #a1c4fd;
-
-            /* Chrome 10-25, Safari 5.1-6 */
-            background: -webkit-linear-gradient(to bottom, rgba(161, 196, 253, 0.5), rgba(194, 233, 251, 0.5));
-
-            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-            background: linear-gradient(to bottom, rgba(161, 196, 253, 0.5), rgba(194, 233, 251, 0.5))
-        }
-
-        .font-medium-bold {
-            font-weight: 500 !important;
-        }
-    </style>
-    <script>
-        function show(shown, hidden) {
-            document.getElementById(shown).style.display = 'block';
-            document.getElementById(hidden).style.display = 'none';
-            return true;
-        }
-    </script>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f9fc">
+    <meta name="description" content="Use GPS club code SKICLUB when buying an eligible Wachusett Mountain season pass. Prices are synced from Wachusett.">
+    <link rel="canonical" href="https://skiclub-gps.com/">
     <link rel="icon" href="https://i.imgur.com/o0YB5Ku.png">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PZXMZFK5HR"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>SKICLUB GPS - Wachusett Season Pass Group</title>
+    <style>
+        :root {
+            --ink: #172536;
+            --muted: #64748b;
+            --blue: #2768a8;
+            --blue-dark: #174b7c;
+            --surface: #ffffff;
+            --line: #dce5ee;
+            --gold: #e7ad17;
+            --silver: #87939d;
+            --bronze: #b96f37;
+            --steel: #687782;
         }
 
-        gtag('js', new Date());
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 88px;
+        }
 
-        gtag('config', 'G-PZXMZFK5HR');
-    </script>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>SKICLUB GPS - Save Money on Wachusett Season Passes</title>
-    <meta name="description"
-          content="Skiclub GPS is a group that saves you money when buying season passes for Wachusett Mountain Ski Area and alerts you to pass sale dates and pass restocks.">
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 15% 0%, rgba(151, 202, 242, 0.28), transparent 34rem),
+                linear-gradient(180deg, #f7fafc 0%, #edf4f9 52%, #f7fafc 100%);
+            color: var(--ink);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 1140px; }
+
+        .navbar {
+            min-height: 72px;
+            background: rgba(255, 255, 255, 0.9);
+            border-bottom: 1px solid rgba(23, 37, 54, 0.08);
+            box-shadow: 0 4px 20px rgba(28, 55, 80, 0.05);
+            backdrop-filter: blur(14px);
+        }
+
+        .navbar-brand {
+            color: var(--ink);
+            letter-spacing: -0.02em;
+        }
+
+        .navbar-brand img {
+            width: 34px;
+            height: 34px;
+            margin-right: 8px;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(23, 37, 54, 0.14);
+        }
+
+        .nav-link {
+            color: #435266;
+            font-size: 0.94rem;
+            font-weight: 550;
+        }
+
+        .nav-link:hover { color: var(--blue); }
+
+        .btn {
+            border-radius: 0.65rem;
+            font-weight: 650;
+            transition: transform 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+        }
+
+        .btn:hover { transform: translateY(-1px); }
+        .btn-primary { border-color: var(--blue); background: var(--blue); }
+        .btn-primary:hover { border-color: var(--blue-dark); background: var(--blue-dark); box-shadow: 0 8px 18px rgba(39, 104, 168, 0.2); }
+
+        .intro-card,
+        .pass-card,
+        .how-card,
+        .pass-title-card {
+            border: 1px solid rgba(216, 227, 237, 0.9);
+            border-radius: 1rem;
+            background: rgba(255, 255, 255, 0.96);
+            box-shadow: 0 12px 32px rgba(26, 54, 78, 0.07);
+        }
+
+        .intro-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .intro-card::before {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #6eb8e8, var(--blue), #8ed0ec);
+            content: "";
+        }
+
+        .intro-layout {
+            display: grid;
+            align-items: center;
+            grid-template-columns: minmax(0, 1.4fr) minmax(250px, 0.6fr);
+            gap: 2.5rem;
+        }
+
+        .intro-copy h1 {
+            margin-bottom: 1rem;
+            letter-spacing: -0.035em;
+        }
+
+        .intro-copy .lead {
+            max-width: 760px;
+            color: #3f5063;
+            font-size: 1.12rem;
+        }
+
+        .code-panel {
+            padding: 1.6rem;
+            border: 1px solid #cfdeeb;
+            border-radius: 0.9rem;
+            background: #f3f8fc;
+            text-align: center;
+        }
+
+        .code-label {
+            margin-bottom: 0.65rem;
+            color: var(--muted);
+            font-size: 0.75rem;
+            font-weight: 750;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+        }
+
+        .club-code {
+            display: block;
+            margin-bottom: 0.9rem;
+            color: var(--blue-dark);
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: 0.07em;
+            line-height: 1;
+        }
+
+        .code-panel .btn { width: 100%; }
+
+        .how-card .card-body { padding: 2rem !important; }
+
+        .how-step {
+            min-height: 100%;
+            padding: 0.35rem 1.25rem;
+        }
+
+        .how-step + .how-step { border-left: 1px solid var(--line); }
+
+        .step-number {
+            display: inline-flex;
+            width: 2.25rem;
+            height: 2.25rem;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.8rem;
+            border-radius: 0.7rem;
+            background: #e7f1fa;
+            color: var(--blue-dark);
+            font-weight: 800;
+        }
+
+        .pass-title-card .card-body { padding: 1.6rem !important; }
+        .pass-title-card h2 { letter-spacing: -0.025em; }
+
+        .sync-status {
+            width: fit-content;
+            margin-inline: auto;
+            padding: 0.35rem 0.7rem;
+            border: 1px solid #d6e3ee;
+            border-radius: 999px;
+            background: #f3f7fa;
+            color: #56677a;
+            font-size: 0.8rem;
+        }
+
+        .section-heading {
+            position: relative;
+            padding: 1rem 1.2rem !important;
+            border: 1px solid var(--section-line);
+            border-left: 6px solid var(--section-accent);
+            border-radius: 0.8rem;
+            background: var(--section-bg);
+            color: var(--section-text);
+            text-align: left;
+        }
+
+        .heading-gold {
+            --section-accent: var(--gold);
+            --section-bg: #fff8e5;
+            --section-line: #f0dda3;
+            --section-text: #5a4307;
+            background: var(--section-bg);
+            color: var(--section-text);
+        }
+
+        .heading-silver {
+            --section-accent: var(--silver);
+            --section-bg: #f0f3f5;
+            --section-line: #d8dee2;
+            --section-text: #3d4952;
+            background: var(--section-bg);
+            color: var(--section-text);
+        }
+
+        .heading-bronze {
+            --section-accent: var(--bronze);
+            --section-bg: #faeee6;
+            --section-line: #e7c6ae;
+            --section-text: #60361a;
+            background: var(--section-bg);
+            color: var(--section-text);
+        }
+
+        .heading-steel {
+            --section-accent: var(--steel);
+            --section-bg: #edf1f3;
+            --section-line: #d3dbe0;
+            --section-text: #36434c;
+            background: var(--section-bg);
+            color: var(--section-text);
+        }
+
+        .pass-card {
+            height: 100%;
+            overflow: hidden;
+            transition: transform 160ms ease, box-shadow 160ms ease;
+        }
+
+        .pass-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 38px rgba(26, 54, 78, 0.11);
+        }
+
+        .pass-card .card-header {
+            padding-block: 1rem !important;
+            border-bottom: 1px solid rgba(23, 37, 54, 0.07);
+            border-radius: 0 !important;
+            font-weight: 700;
+            text-align: left;
+        }
+
+        .pass-card .card-body {
+            display: flex;
+            padding: 1.45rem;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .pass-card .btn {
+            width: 100%;
+            margin-top: auto;
+            padding-block: 0.65rem;
+        }
+
+        .price {
+            min-height: 2.8rem;
+            margin: 0 0 0.2rem;
+            color: var(--ink);
+            font-size: 2rem;
+            font-weight: 750;
+            letter-spacing: -0.035em;
+        }
+
+        .price-note {
+            min-height: 2.4rem;
+            color: var(--muted);
+            font-size: 0.78rem;
+            line-height: 1.4;
+        }
+
+        .feature-list {
+            margin: 1.15rem 0 1.35rem;
+            padding: 1rem 0 0;
+            border-top: 1px solid #e9eef3;
+            list-style: none;
+        }
+
+        .feature-list li {
+            margin-bottom: 0.45rem;
+            color: #435266;
+            font-size: 0.92rem;
+        }
+
+        .alert-light {
+            border-color: #d7e3ed !important;
+            border-radius: 0.85rem;
+            background: rgba(255, 255, 255, 0.78);
+            color: #435266;
+        }
+
+        .modal-content {
+            overflow: hidden;
+            border: 0;
+            border-radius: 1rem;
+            box-shadow: 0 22px 60px rgba(23, 37, 54, 0.22);
+        }
+
+        footer {
+            margin-top: 3.5rem;
+            background: rgba(255, 255, 255, 0.76);
+            border-top: 1px solid rgba(23, 37, 54, 0.08);
+        }
+
+        @media (max-width: 767.98px) {
+            .intro-layout { grid-template-columns: 1fr; gap: 1.6rem; }
+            .how-step { padding: 1rem 0; }
+            .how-step + .how-step { border-top: 1px solid var(--line); border-left: 0; }
+            .pass-card .card-header,
+            .pass-card .card-body { text-align: center; }
+        }
+
+        @media (max-width: 575.98px) {
+            .display-6 { font-size: 2rem; }
+            .navbar .btn { width: 100%; margin-top: 0.5rem; }
+            .intro-card .card-body { padding: 2rem 1.25rem !important; }
+            .section-heading { text-align: center; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .btn, .pass-card { transition: none; }
+        }
+    </style>
 </head>
 <body>
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0"
-        nonce="kUMhCE7M"></script>
-<nav class="navbar navbar-expand-lg navbar-light sticky-top mb-2">
-    <div class="container-fluid">
-        <!--<a class="navbar-brand" href="#">SKICLUB</a>-->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+<a class="visually-hidden-focusable position-absolute top-0 start-0 m-2 p-2 bg-white rounded" href="#main">Skip to main content</a>
+
+<nav class="navbar navbar-expand-lg navbar-light sticky-top">
+    <div class="container">
+        <a class="navbar-brand fw-semibold" href="#home">
+            <img src="https://i.imgur.com/o0YB5Ku.png" alt="">
+            SKICLUB GPS
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link active" aria-current="page" href="#home" onclick="return show('pass','how');"><img
-                        style="height: 1em"
-                        src="https://i.imgur.com/o0YB5Ku.png" alt="Site logo">SKICLUB
-                    GPS</a>
-                <!--<a class="nav-link" href="#home">Why GPS?</a>-->
-                <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" onclick="return show('pass','how')" id="navbarDropdown"
-                       role="button"
-                       data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                        Pass Options
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" onclick="return show('pass','how');" href="#gold">Gold</a></li>
-                        <li><a class="dropdown-item" onclick="return show('pass','how');" href="#silver">Silver</a></li>
-                        <li><a class="dropdown-item" onclick="return show('pass','how');" href="#bronze">Bronze</a></li>
-                        <li><a class="dropdown-item" href="#steel" onclick="return show('pass','how');">Steel</a></li>
-                    </ul>
-                </div>
-                <a class="nav-link" onclick="return show('how','pass');" href="#home">How to Get the Group Rate</a>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <div class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                <a class="nav-link" href="#passes">Pass options</a>
+                <a class="nav-link" href="#how">How to use the code</a>
+                <a class="nav-link" href="https://www.facebook.com/skiclubgps" target="_blank" rel="noopener">Facebook</a>
+                <a class="btn btn-primary ms-lg-2" href="https://www.wachusett.com/tickets-passes/season-passes/season-passes/" target="_blank" rel="noopener">View passes at Wachusett</a>
             </div>
-        </div>
-        <div>
-            <a href="https://www.facebook.com/skiclubgps" class="text-reset">
-                <span>Like Us on Facebook</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                     class="bi bi-facebook" viewBox="0 0 16 16">
-                    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
-                </svg>
-            </a>
         </div>
     </div>
 </nav>
-<div class="gradient-custom">
-    <div class="container mb-4" id="home">
-        <div class="row justify-content-center">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title text-center ">Why use GPS Passes?</h2>
-                        <hr width=70% style="margin-left:15%"/>
-                        <h5 class="text-center mb-3">
-                            <p>A Wachusett GPS Pass is equivalent to the non GPS version, but at a
-                                lower
-                                price for a group rate. For the passes which have a GPS version, they
-                                can and do sell out separate from the regular version. Buy early to avoid sellout as
-                                well as
-                                to avoid price increases as the season approaches. </p></h5>
-                        <h5 class="text-center mb-3"><p>This group is started with the goal to get more people to take
-                            advantage of these passes.
-                            Tell your friends and family to use the GPS club code <span
-                                    class="text-primary fw-bold">SKICLUB</span> to save money on your pass. </p></h5>
-                        <h5 class="text-center mb-3"> Also <a href="https://www.facebook.com/skiclubgps">follow us on
-                            Facebook</a> to keep updated on Wachusett Mountain pass availability</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Optional JavaScript; choose one of the two! -->
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"></script>
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    -->
-    <div class="container" id="pass">
-        <div class="container mb-4">
-            <div class="row justify-content-center">
-                <div class="col-6">
-                    <div class="card">
-                        <div class="card-body bg-light">
-                            <h1 class="card-title text-center ">Wachusett Season Pass Options</h1>
-                        </div>
+<main id="main">
+    <section class="container py-4" id="home">
+        <div class="card intro-card">
+            <div class="card-body p-4 p-md-5">
+                <div class="intro-layout">
+                    <div class="intro-copy">
+                        <h1 class="display-6 fw-semibold">Save on a Wachusett season pass</h1>
+                        <p class="lead">A Wachusett GPS Pass provides the same access as the corresponding season pass, with group savings applied through Wachusett.</p>
+                        <p class="mb-0 text-secondary">Choose an eligible pass on the official Wachusett website and enter our GPS club code during checkout. No signup is required here.</p>
+                    </div>
+                    <div class="code-panel">
+                        <div class="code-label">GPS club code</div>
+                        <span class="club-code" id="club-code">SKICLUB</span>
+                        <button class="btn btn-outline-primary" id="copy-code" type="button">Copy code</button>
+                        <p class="small text-secondary mt-3 mb-0" id="copy-status" aria-live="polite">Payment stays with Wachusett Mountain.</p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center" id="gold">
-            <div class="col-7">
-                <div class="card">
-                    <div class="card-body bg-warning">
-                        <h2 class="card-title text-center ">Gold Pass</h2>
+    </section>
+
+    <section class="container pb-4" id="how">
+        <div class="card how-card">
+            <div class="card-body p-4">
+                <h2 class="h3 text-center mb-4">How to Get the Group Rate</h2>
+                <div class="row g-4 text-center">
+                    <div class="col-md-4 how-step">
+                        <span class="step-number">1</span>
+                        <h3 class="h5">Choose a pass</h3>
+                        <p class="mb-0 text-secondary">Compare the options below and confirm the current restrictions with Wachusett.</p>
+                    </div>
+                    <div class="col-md-4 how-step">
+                        <span class="step-number">2</span>
+                        <h3 class="h5">Add it to your cart</h3>
+                        <p class="mb-0 text-secondary">Complete the purchase securely on Wachusett's official website.</p>
+                    </div>
+                    <div class="col-md-4 how-step">
+                        <span class="step-number">3</span>
+                        <h3 class="h5">Enter SKICLUB</h3>
+                        <p class="mb-0 text-secondary">Use <strong>SKICLUB</strong> in the GPS Club or group name field before paying.</p>
                     </div>
                 </div>
             </div>
         </div>
-        <br>
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="card">
-                    <div class="card-body bg-warning">
-                        <h3 class="card-title text-center">Gold</h3>
-                    </div>
-                    <h4 class="card-title text-center mt-3 mb-1">$689 <span class="text-muted"> (Save $10)</span>
-                    </h4>
-                    <hr/>
-                    <p class="text-center fs-5 mb-0">No Blockouts ✅</p>
-                    <hr width=70% style="margin-left:15%"/>
-                    <p class="text-center mb-3 fs-5">Age 13-64</p>
-                    <a role="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                       class="btn bg-warning btn fs-4 font-medium-bold buy_button"
-                       href="https://www.wachusett.com/Tickets-Passes/GPS-Club.aspx">
-                        Buy Now
-                    </a>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card">
-                    <div class="card-body bg-warning">
-                        <h3 class="card-title text-center">Junior Gold</h3>
-                    </div>
-                    <h4 class="card-title text-center mt-3 mb-1">$419 <span class="text-muted"> (Save $10)</span>
-                    </h4>
-                    <hr/>
-                    <p class="text-center fs-5 mb-0">No Blockouts ✅</p>
-                    <hr width=70% style="margin-left:15%"/>
-                    <p class="text-center mb-3 fs-5">Age 6-12</p>
-                    <a role="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                       class="btn bg-warning btn fs-4 font-medium-bold buy_button"
-                       href="https://www.wachusett.com/Tickets-Passes/GPS-Club.aspx">
-                        Buy Now
-                    </a>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card">
-                    <div class="card-body bg-warning">
-                        <h3 class="card-title text-center">Senior Gold</h3>
-                    </div>
-                    <h4 class="card-title text-center mt-3 mb-1">$419 <span class="text-muted"> (Save $10)</span>
-                    </h4>
-                    <hr/>
-                    <p class="text-center fs-5 mb-0">No Blockouts ✅</p>
-                    <hr width=70% style="margin-left:15%"/>
-                    <p class="text-center mb-3 fs-5">Age 65+</p>
-                    <a role="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                       class="btn bg-warning btn fs-4 font-medium-bold buy_button"
-                       href="https://www.wachusett.com/Tickets-Passes/GPS-Club.aspx">
-                        Buy Now
-                    </a>
-                </div>
+    </section>
+
+    <section class="container" id="passes">
+        <div class="card pass-title-card mb-4">
+            <div class="card-body text-center py-3">
+                <h2 class="h2 mb-2">Wachusett Season Pass Options</h2>
+                <p class="sync-status mb-0" id="price-status" aria-live="polite">Loading current prices from Wachusett…</p>
             </div>
         </div>
-        <div class="row justify-content-center mt-4" id="silver">
-            <div class="col-7">
-                <div class="card">
-                    <div class="card-body" style="background:silver">
-                        <h2 class="card-title text-center ">Silver Pass</h2>
+
+        <div class="section-heading heading-gold p-3 mb-3" id="gold">
+            <h2 class="h3 mb-0">Gold Pass</h2>
+        </div>
+        <div class="row g-3 mb-4">
+            <div class="col-md-4">
+                <article class="card pass-card">
+                    <div class="card-header heading-gold py-3"><h3 class="h5 mb-0">Gold</h3></div>
+                    <div class="card-body">
+                        <div class="price" data-price-key="gold_adult">Checking price…</div>
+                        <div class="price-note">Wachusett listed price before GPS savings</div>
+                        <ul class="feature-list">
+                            <li>No restrictions ✓</li>
+                            <li>Age 13–64</li>
+                        </ul>
+                        <button class="btn btn-warning buy-button" type="button" data-bs-toggle="modal" data-bs-target="#buyModal" data-pass-name="Gold">Buy at Wachusett</button>
                     </div>
-                </div>
+                </article>
+            </div>
+            <div class="col-md-4">
+                <article class="card pass-card">
+                    <div class="card-header heading-gold py-3"><h3 class="h5 mb-0">Junior Gold</h3></div>
+                    <div class="card-body">
+                        <div class="price" data-price-key="gold_junior">Checking price…</div>
+                        <div class="price-note">Wachusett listed price before GPS savings</div>
+                        <ul class="feature-list">
+                            <li>No restrictions ✓</li>
+                            <li>Age 6–12</li>
+                        </ul>
+                        <button class="btn btn-warning buy-button" type="button" data-bs-toggle="modal" data-bs-target="#buyModal" data-pass-name="Junior Gold">Buy at Wachusett</button>
+                    </div>
+                </article>
+            </div>
+            <div class="col-md-4">
+                <article class="card pass-card">
+                    <div class="card-header heading-gold py-3"><h3 class="h5 mb-0">Senior Gold</h3></div>
+                    <div class="card-body">
+                        <div class="price" data-price-key="gold_senior">Checking price…</div>
+                        <div class="price-note">Wachusett listed price before GPS savings</div>
+                        <ul class="feature-list">
+                            <li>No restrictions ✓</li>
+                            <li>Age 65+</li>
+                        </ul>
+                        <button class="btn btn-warning buy-button" type="button" data-bs-toggle="modal" data-bs-target="#buyModal" data-pass-name="Senior Gold">Buy at Wachusett</button>
+                    </div>
+                </article>
             </div>
         </div>
-        <br>
-        <div class="row justify-content-center">
-            <div class="col-sm-4">
-                <div class="card">
-                    <div class="card-body bg-muted" style="background:silver">
-                        <h3 class="card-title text-center">Silver</h3>
+
+        <div class="section-heading heading-silver p-3 mb-3" id="silver">
+            <h2 class="h3 mb-0">Silver Pass</h2>
+        </div>
+        <div class="row g-3 mb-4">
+            <div class="col-md-4">
+                <article class="card pass-card">
+                    <div class="card-header heading-silver py-3"><h3 class="h5 mb-0">Silver</h3></div>
+                    <div class="card-body">
+                        <div class="price" data-price-key="silver_adult">Checking price…</div>
+                        <div class="price-note">Wachusett listed price before GPS savings</div>
+                        <ul class="feature-list">
+                            <li>Non-holiday weekdays ✓</li>
+                            <li>All nights ✓</li>
+                            <li>Age 13–64</li>
+                        </ul>
+                        <button class="btn buy-button" style="background:#c5c9cc" type="button" data-bs-toggle="modal" data-bs-target="#buyModal" data-pass-name="Silver">Buy at Wachusett</button>
                     </div>
-                    <h4 class="card-title text-center mt-3 mb-1">$489 <span class="text-muted"> (Save $10)</span>
-                    </h4>
-                    <hr/>
-                    <p class="text-center fs-5 mb-0">All Nights ✅</p>
-                    <p class="text-center fs-5 mb-0">Weekends before 12/24 ✅</p>
-                    <p class="text-center fs-5 mb-0">Weekends after 2/26 ✅</p>
-                    <p class="text-center fs-5 mb-0">Weekday Non Holiday ✅</p>
-                    <hr width=70% style="margin-left:15%"/>
-                    <p class="text-center mb-3 fs-5">Age 6+</p>
-                    <a role="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                       class="btn  fs-4 font-medium-bold buy_button"
-                       style="background:silver"
-                       href="https://www.wachusett.com/Tickets-Passes/GPS-Club.aspx">
-                        Buy Now
-                    </a>
-                </div>
+                </article>
+            </div>
+            <div class="col-md-4">
+                <article class="card pass-card">
+                    <div class="card-header heading-silver py-3"><h3 class="h5 mb-0">Junior Silver</h3></div>
+                    <div class="card-body">
+                        <div class="price" data-price-key="silver_junior">Checking price…</div>
+                        <div class="price-note">Wachusett listed price before GPS savings</div>
+                        <ul class="feature-list">
+                            <li>Non-holiday weekdays ✓</li>
+                            <li>All nights ✓</li>
+                            <li>Age 6–12</li>
+                        </ul>
+                        <button class="btn buy-button" style="background:#c5c9cc" type="button" data-bs-toggle="modal" data-bs-target="#buyModal" data-pass-name="Junior Silver">Buy at Wachusett</button>
+                    </div>
+                </article>
+            </div>
+            <div class="col-md-4">
+                <article class="card pass-card">
+                    <div class="card-header heading-silver py-3"><h3 class="h5 mb-0">Senior Silver</h3></div>
+                    <div class="card-body">
+                        <div class="price" data-price-key="silver_senior">Checking price…</div>
+                        <div class="price-note">Wachusett listed price before GPS savings</div>
+                        <ul class="feature-list">
+                            <li>Non-holiday weekdays ✓</li>
+                            <li>All nights ✓</li>
+                            <li>Age 65+</li>
+                        </ul>
+                        <button class="btn buy-button" style="background:#c5c9cc" type="button" data-bs-toggle="modal" data-bs-target="#buyModal" data-pass-name="Senior Silver">Buy at Wachusett</button>
+                    </div>
+                </article>
             </div>
         </div>
-        <div class="row justify-content-center mt-4" id="bronze">
-            <div class="col-7">
-                <div class="card">
-                    <div class="card-body" style="background:#CD7F32">
-                        <h2 class="card-title text-center ">Bronze Pass</h2>
+
+        <div class="section-heading heading-bronze p-3 mb-3" id="bronze">
+            <h2 class="h3 mb-0">Bronze Pass</h2>
+        </div>
+        <div class="row g-3 mb-4">
+            <div class="col-md-4">
+                <article class="card pass-card">
+                    <div class="card-header heading-bronze py-3"><h3 class="h5 mb-0">Bronze</h3></div>
+                    <div class="card-body">
+                        <div class="price" data-price-key="bronze_adult">Checking price…</div>
+                        <div class="price-note">Wachusett listed price before GPS savings</div>
+                        <ul class="feature-list">
+                            <li>All nights ✓</li>
+                            <li>Non-holiday Mon–Thu days ✓</li>
+                            <li>Age 13–64</li>
+                        </ul>
+                        <button class="btn buy-button" style="background:#cd7f32" type="button" data-bs-toggle="modal" data-bs-target="#buyModal" data-pass-name="Bronze">Buy at Wachusett</button>
                     </div>
-                </div>
+                </article>
+            </div>
+            <div class="col-md-4">
+                <article class="card pass-card">
+                    <div class="card-header heading-bronze py-3"><h3 class="h5 mb-0">Junior Bronze</h3></div>
+                    <div class="card-body">
+                        <div class="price" data-price-key="bronze_junior">Checking price…</div>
+                        <div class="price-note">Wachusett listed price before GPS savings</div>
+                        <ul class="feature-list">
+                            <li>All nights ✓</li>
+                            <li>Non-holiday Mon–Thu days ✓</li>
+                            <li>Age 6–12</li>
+                        </ul>
+                        <button class="btn buy-button" style="background:#cd7f32" type="button" data-bs-toggle="modal" data-bs-target="#buyModal" data-pass-name="Junior Bronze">Buy at Wachusett</button>
+                    </div>
+                </article>
+            </div>
+            <div class="col-md-4">
+                <article class="card pass-card">
+                    <div class="card-header heading-bronze py-3"><h3 class="h5 mb-0">Senior Bronze</h3></div>
+                    <div class="card-body">
+                        <div class="price" data-price-key="bronze_senior">Checking price…</div>
+                        <div class="price-note">Wachusett listed price before GPS savings</div>
+                        <ul class="feature-list">
+                            <li>All nights ✓</li>
+                            <li>Non-holiday Mon–Thu days ✓</li>
+                            <li>Age 65+</li>
+                        </ul>
+                        <button class="btn buy-button" style="background:#cd7f32" type="button" data-bs-toggle="modal" data-bs-target="#buyModal" data-pass-name="Senior Bronze">Buy at Wachusett</button>
+                    </div>
+                </article>
             </div>
         </div>
-        <br>
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="card">
-                    <div class="card-body " style="background:#CD7F32">
-                        <h3 class="card-title text-center">Bronze</h3>
+
+        <div class="section-heading heading-steel p-3 mb-3" id="steel">
+            <h2 class="h3 mb-0">Steel Pass</h2>
+        </div>
+        <div class="row justify-content-center mb-4">
+            <div class="col-md-5 col-lg-4">
+                <article class="card pass-card">
+                    <div class="card-header heading-steel py-3"><h3 class="h5 mb-0">Steel</h3></div>
+                    <div class="card-body">
+                        <div class="price fs-5">Not currently listed</div>
+                        <div class="price-note">No Steel price is currently published on Wachusett's season pass page</div>
+                        <ul class="feature-list">
+                            <li>Non-holiday Mon–Thu days ✓</li>
+                            <li>Age 6+</li>
+                        </ul>
+                        <a class="btn text-white" style="background:#71797e" href="https://www.wachusett.com/tickets-passes/season-passes/season-passes/" target="_blank" rel="noopener">Check availability</a>
                     </div>
-                    <h4 class="card-title text-center mt-3 mb-1">$359 <span class="text-muted"> (Save $10)</span>
-                    </h4>
-                    <hr/>
-                    <p class="text-center fs-5 mb-0">All Nights ✅</p>
-                    <p class="text-center fs-5 mb-0">Weekday Non Holiday ✅</p>
-                    <hr width=70% style="margin-left:15%"/>
-                    <p class="text-center mb-3 fs-5">Age 13-64</p>
-                    <a role="button" class="btn fs-4 font-medium-bold buy_button" style="background:#CD7F32"
-                       data-bs-toggle="modal"
-                       data-bs-target="#exampleModal">
-                        Buy Now
-                    </a>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card">
-                    <div class="card-body " style="background:#CD7F32">
-                        <h3 class="card-title text-center">Junior Bronze</h3>
-                    </div>
-                    <h4 class="card-title text-center mt-3 mb-1">$339 <span class="text-muted"> (Save $10)</span>
-                    </h4>
-                    <hr/>
-                    <p class="text-center fs-5 mb-0">All Nights ✅</p>
-                    <p class="text-center fs-5 mb-0">Weekday Non Holiday ✅</p>
-                    <hr width=70% style="margin-left:15%"/>
-                    <p class="text-center mb-3 fs-5">Age 6-12</p>
-                    <a role="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                       class="btn fs-4 font-medium-bold buy_button"
-                       style="background:#CD7F32"
-                       href="https://www.wachusett.com/Tickets-Passes/GPS-Club.aspx">
-                        Buy Now
-                    </a>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card">
-                    <div class="card-body " style="background:#CD7F32">
-                        <h3 class="card-title text-center">Senior Bronze</h3>
-                    </div>
-                    <h4 class="card-title text-center mt-3 mb-1">$339 <span class="text-muted"> (Save $10)</span>
-                    </h4>
-                    <hr/>
-                    <p class="text-center fs-5 mb-0">All Nights ✅</p>
-                    <p class="text-center fs-5 mb-0">Weekday Non Holiday ✅</p>
-                    <hr width=70% style="margin-left:15%"/>
-                    <p class="text-center mb-3 fs-5">Age 65+</p>
-                    <a role="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                       class="btn  fs-4 font-medium-bold buy_button"
-                       style="background:#CD7F32"
-                       href="https://www.wachusett.com/Tickets-Passes/GPS-Club.aspx">
-                        Buy Now
-                    </a>
-                </div>
+                </article>
             </div>
         </div>
-        <div class="row justify-content-center mt-4" id="steel">
-            <div class="col-7">
-                <div class="card">
-                    <div class="card-body" style="background:#71797E">
-                        <h2 class="card-title text-center text-light">Steel Pass</h2>
-                    </div>
-                </div>
-            </div>
+
+        <div class="alert alert-light border text-center" role="note">
+            <strong>Price note:</strong> prices above are Wachusett's public listed prices. Any eligible GPS group savings are calculated by Wachusett after you enter <strong>SKICLUB</strong> at checkout. Prices and availability can change.
+            <div class="mt-2"><a href="https://www.wachusett.com/tickets-passes/season-passes/season-passes/season-pass-comparisons/" target="_blank" rel="noopener">View the official pass comparison</a></div>
         </div>
-        <br>
-        <div class="row justify-content-center">
-            <div class="col-sm-4">
-                <div class="card">
-                    <div class="card-body bg-muted" style="background:#71797E">
-                        <h3 class="card-title text-center text-light">Steel</h3>
-                    </div>
-                    <h4 class="card-title text-center mt-3 mb-1">$229 <span class="text-muted"> (Save $10)</span>
-                    </h4>
-                    <hr/>
-                    <p class="text-center fs-5 mb-0">Weekday Non Holiday ✅</p>
-                    <hr width=70% style="margin-left:15%"/>
-                    <p class="text-center mb-3 fs-5">Age 6+</p>
-                    <a role="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                       class="btn  fs-4 font-medium-bold buy_button"
-                       style="background:#71797E"
-                       href="https://www.wachusett.com/Tickets-Passes/GPS-Club.aspx">
-                        <f4 class="text-center align-middle text-light">Buy Now</f4>
-                    </a>
-                </div>
+    </section>
+</main>
+
+<div class="modal fade" id="buyModal" tabindex="-1" aria-labelledby="buyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="buyModalLabel">Continue to Wachusett</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-        </div>
-    </div>
-    <br>
-    <div class="container" id="how" style="display: none">
-        <div class="row justify-content-center">
-            <h2 class="text-center">How to Use the Group Code</h2>
-            <div class="col-10 text-center">
-                <h3>Add the requested GPS pass to your cart and begin checkout. Enter <span
-                        class="text-info">SKICLUB</span> as the GPS Club name in checkout as shown below. That's it!
-                </h3>
-                <img src="https://i.imgur.com/22Q7Qjv.png" class="card-img-top"
-                     alt="Checkout step showing where to enter group code">
+            <div class="modal-body">
+                <p id="selected-pass-text">You selected a season pass.</p>
+                <p class="mb-0">Remember to enter GPS club code <strong class="text-primary">SKICLUB</strong> before completing checkout.</p>
             </div>
-        </div>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Sending you to Wachusett</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>
-                        Remember to enter the group code <span class="text-info fw-bold">SKICLUB</span> at checkout to
-                        properly lock in
-                        the
-                        group rate.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <a role="button" class="btn btn-primary"
-                       href="https://www.wachusett.com/Tickets-Passes/GPS-Club.aspx">
-                        Proceed
-                    </a>
-                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a class="btn btn-primary" href="https://www.wachusett.com/tickets-passes/season-passes/season-passes/" target="_blank" rel="noopener">Continue</a>
             </div>
         </div>
     </div>
 </div>
-<!-- Footer -->
-<footer class="text-lg-start bg-light text-muted">
-    <!-- Section: Social media -->
-    <!--<section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">-->
-    <!-- Left -->
-    <!--  <div class="me-5 d-none d-lg-block">-->
-    <!--    <span>Follow us on our socials for more information on passes:</span>-->
-    <!--    <a href="https://www.facebook.com/skiclubgps" class="text-reset">-->
-    <!--      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">-->
-    <!--        <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />-->
-    <!--      </svg>-->
-    <!--    </a>-->
-    <!--  </div>-->
-    <!-- Left -->
-    <!-- Right -->
-    <!--  <div>-->
 
-    <!--  </div>-->
-    <!-- Right -->
-    <!--</section>-->
-    <!-- Section: Links  -->
-    <!-- Copyright -->
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-sm-4 col-md-4 text-center">
-                <div class="fb-page" data-href="https://www.facebook.com/skiclubgps/" data-tabs="timeline"
-                     data-width="500" data-height="" data-small-header="false" data-adapt-container-width="true"
-                     data-hide-cover="true" data-show-facepile="true">
-                    <blockquote cite="https://www.facebook.com/skiclubgps/" class="fb-xfbml-parse-ignore"><a
-                            href="https://www.facebook.com/skiclubgps/">Wachusett Mountain GPS Skiclub - SAVE money on
-                        Wachusett Season Passes</a></blockquote>
-                </div>
-            </div>
-        </div>
+<footer class="py-4">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2 text-secondary small">
+        <span>SKICLUB GPS · Independent Wachusett GPS group</span>
+        <span><a href="https://www.facebook.com/skiclubgps" target="_blank" rel="noopener">Follow us on Facebook</a></span>
     </div>
-
-    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);"> © 2022 Copyright: <a
-            class="text-reset font-medium-bold buy_button" href="https://mdbootstrap.com/">skiclub-gps.com</a>
-    </div>
-    <!-- Copyright -->
 </footer>
-<!-- Footer -->
-<!--<script>-->
-<!--    var els = document.querySelectorAll('.buy_button');-->
-<!--    var = true;-->
-<!--    if (disabled){-->
-<!--        for (var i=0; i < els.length; i++) {-->
-<!--            els[i].setAttribute("class", "disabled");-->
-<!--        } -->
-<!--    }-->
-<!--</script>-->
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script>
+    const OFFICIAL_PASS_URL = 'https://www.wachusett.com/tickets-passes/season-passes/season-passes/';
+    const priceElements = document.querySelectorAll('[data-price-key]');
+    const priceStatus = document.getElementById('price-status');
+    const currency = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        maximumFractionDigits: 0
+    });
+
+    fetch(`data/prices.json?v=${Date.now()}`, { cache: 'no-store' })
+        .then((response) => {
+            if (!response.ok) throw new Error('Price feed unavailable');
+            return response.json();
+        })
+        .then((data) => {
+            priceElements.forEach((element) => {
+                const pass = data.passes[element.dataset.priceKey];
+                element.textContent = pass && pass.published && Number.isFinite(pass.price)
+                    ? currency.format(pass.price)
+                    : 'See current price';
+            });
+
+            const updated = new Date(data.updated_at);
+            priceStatus.textContent = Number.isNaN(updated.getTime())
+                ? `Current ${data.season || ''} prices synced from Wachusett`
+                : `Current ${data.season || ''} prices synced from Wachusett · Updated ${updated.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
+        })
+        .catch(() => {
+            priceElements.forEach((element) => {
+                element.innerHTML = `<a class="fs-6" href="${OFFICIAL_PASS_URL}" target="_blank" rel="noopener">See current price</a>`;
+            });
+            priceStatus.textContent = 'Live prices are temporarily unavailable. Please confirm them with Wachusett.';
+        });
+
+    const copyButton = document.getElementById('copy-code');
+    const copyStatus = document.getElementById('copy-status');
+    copyButton.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText('SKICLUB');
+            copyButton.textContent = 'Copied ✓';
+            copyStatus.textContent = 'SKICLUB is ready to paste at checkout.';
+        } catch {
+            copyStatus.textContent = 'Clipboard access is unavailable. The code is SKICLUB.';
+        }
+    });
+
+    document.querySelectorAll('.buy-button').forEach((button) => {
+        button.addEventListener('click', () => {
+            document.getElementById('selected-pass-text').textContent = `You selected the ${button.dataset.passName} pass.`;
+        });
+    });
+</script>
 </body>
 </html>
