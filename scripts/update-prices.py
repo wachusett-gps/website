@@ -14,7 +14,8 @@ from urllib.request import Request, urlopen
 
 AUTH_URL = "https://wp-api.wachusett.com/api/AccountAuthenticationJWT/AccountCreateTempCustomer"
 PRODUCT_URL = "https://wp-api.wachusett.com/api/Store/GetBasicProductVUE"
-SOURCE_URL = "https://www.wachusett.com/tickets-passes/season-passes/season-passes/"
+REGULAR_SOURCE_URL = "https://www.wachusett.com/tickets-passes/season-passes/season-passes/"
+GPS_SOURCE_URL = "https://www.wachusett.com/tickets-passes/group-season-passes/group-season-passes/"
 OUTPUT_PATH = Path(__file__).resolve().parents[1] / "data" / "prices.json"
 
 EXPECTED_KEYS = {
@@ -60,23 +61,18 @@ def request_json(url: str, method: str = "GET") -> dict:
     return json.loads(request_bytes(url, method=method))
 
 
-def discover_variants() -> list[tuple[str, int, int]]:
+def discover_variants(source_url: str) -> list[tuple[str, int, int]]:
     parser = PassTileParser()
-    parser.feed(request_bytes(SOURCE_URL).decode("utf-8"))
+    parser.feed(request_bytes(source_url).decode("utf-8"))
     if not parser.tiles:
-        raise RuntimeError("No published Gold, Silver, or Bronze pass tiles were found")
+        raise RuntimeError(f"No published Gold, Silver, or Bronze pass tiles were found at {source_url}")
     return parser.tiles
 
 
-def fetch_prices() -> dict:
-    auth = request_json(AUTH_URL, method="POST")
-    token = auth.get("token")
-    if not token:
-        raise RuntimeError("Wachusett did not return a temporary public-session token")
-
+def fetch_price_set(source_url: str, token: str) -> tuple[dict, str | None]:
     passes = {}
     season = None
-    for tier, product_id, variant_id in discover_variants():
+    for tier, product_id, variant_id in discover_variants(source_url):
         query = urlencode(
             {
                 "productID": product_id,
@@ -121,11 +117,46 @@ def fetch_prices() -> dict:
 
     missing = EXPECTED_KEYS - passes.keys()
     if missing:
-        raise RuntimeError(f"Price sync returned an incomplete pass set: {sorted(missing)}")
+        raise RuntimeError(f"Price sync returned an incomplete pass set from {source_url}: {sorted(missing)}")
+
+    return passes, season
+
+
+def fetch_prices() -> dict:
+    auth = request_json(AUTH_URL, method="POST")
+    token = auth.get("token")
+    if not token:
+        raise RuntimeError("Wachusett did not return a temporary public-session token")
+
+    regular_passes, regular_season = fetch_price_set(REGULAR_SOURCE_URL, token)
+    gps_passes, gps_season = fetch_price_set(GPS_SOURCE_URL, token)
+    if regular_season and gps_season and regular_season != gps_season:
+        raise RuntimeError(
+            f"Regular and GPS prices are for different seasons: {regular_season} vs {gps_season}"
+        )
+
+    passes = {}
+    for key in sorted(EXPECTED_KEYS):
+        regular = regular_passes[key]
+        gps = gps_passes[key]
+        if gps["price"] > regular["price"]:
+            raise RuntimeError(
+                f"GPS price for {key} ({gps['price']}) exceeds regular price ({regular['price']})"
+            )
+        passes[key] = {
+            "variant_name": gps["variant_name"],
+            "regular_product_id": regular["product_id"],
+            "regular_variant_id": regular["variant_id"],
+            "regular_price": regular["price"],
+            "gps_product_id": gps["product_id"],
+            "gps_variant_id": gps["variant_id"],
+            "gps_price": gps["price"],
+            "published": bool(regular["published"] and gps["published"]),
+        }
 
     return {
-        "source": SOURCE_URL,
-        "season": season or "Current",
+        "sources": {"regular": REGULAR_SOURCE_URL, "gps": GPS_SOURCE_URL},
+        "season": gps_season or regular_season or "Current",
         "passes": passes,
     }
 
@@ -141,7 +172,7 @@ def main() -> None:
 
     fresh["updated_at"] = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     ordered = {
-        "source": fresh["source"],
+        "sources": fresh["sources"],
         "season": fresh["season"],
         "updated_at": fresh["updated_at"],
         "passes": fresh["passes"],

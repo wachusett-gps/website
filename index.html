@@ -269,6 +269,19 @@
         .price {
             min-height: 2.8rem;
             margin: 0 0 0.2rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.65rem;
+            flex-wrap: wrap;
+        }
+
+        .regular-price {
+            color: #8a96a5;
+            font-size: 1.05rem;
+            font-weight: 550;
+        }
+
+        .gps-price {
             color: var(--ink);
             font-size: 2rem;
             font-weight: 750;
@@ -353,7 +366,7 @@
                 <a class="nav-link" href="#passes">Pass options</a>
                 <a class="nav-link" href="#how">How to use the code</a>
                 <a class="nav-link" href="https://www.facebook.com/skiclubgps" target="_blank" rel="noopener">Facebook</a>
-                <a class="btn btn-primary ms-lg-2" href="https://www.wachusett.com/tickets-passes/season-passes/season-passes/" target="_blank" rel="noopener">View passes at Wachusett</a>
+                <a class="btn btn-primary ms-lg-2" href="https://www.wachusett.com/tickets-passes/group-season-passes/group-season-passes/" target="_blank" rel="noopener">View GPS passes at Wachusett</a>
             </div>
         </div>
     </div>
@@ -422,7 +435,7 @@
                     <div class="card-header heading-gold py-3"><h3 class="h5 mb-0">Gold</h3></div>
                     <div class="card-body">
                         <div class="price" data-price-key="gold_adult">Checking price…</div>
-                        <div class="price-note">Wachusett listed price before GPS savings</div>
+                        <div class="price-note">GPS group price</div>
                         <ul class="feature-list">
                             <li>No restrictions ✓</li>
                             <li>Age 13–64</li>
@@ -436,7 +449,7 @@
                     <div class="card-header heading-gold py-3"><h3 class="h5 mb-0">Junior Gold</h3></div>
                     <div class="card-body">
                         <div class="price" data-price-key="gold_junior">Checking price…</div>
-                        <div class="price-note">Wachusett listed price before GPS savings</div>
+                        <div class="price-note">GPS group price</div>
                         <ul class="feature-list">
                             <li>No restrictions ✓</li>
                             <li>Age 6–12</li>
@@ -450,7 +463,7 @@
                     <div class="card-header heading-gold py-3"><h3 class="h5 mb-0">Senior Gold</h3></div>
                     <div class="card-body">
                         <div class="price" data-price-key="gold_senior">Checking price…</div>
-                        <div class="price-note">Wachusett listed price before GPS savings</div>
+                        <div class="price-note">GPS group price</div>
                         <ul class="feature-list">
                             <li>No restrictions ✓</li>
                             <li>Age 65+</li>
@@ -470,7 +483,7 @@
                     <div class="card-header heading-silver py-3"><h3 class="h5 mb-0">Silver</h3></div>
                     <div class="card-body">
                         <div class="price" data-price-key="silver_adult">Checking price…</div>
-                        <div class="price-note">Wachusett listed price before GPS savings</div>
+                        <div class="price-note">GPS group price</div>
                         <ul class="feature-list">
                             <li>Non-holiday weekdays ✓</li>
                             <li>All nights ✓</li>
@@ -485,7 +498,7 @@
                     <div class="card-header heading-silver py-3"><h3 class="h5 mb-0">Junior Silver</h3></div>
                     <div class="card-body">
                         <div class="price" data-price-key="silver_junior">Checking price…</div>
-                        <div class="price-note">Wachusett listed price before GPS savings</div>
+                        <div class="price-note">GPS group price</div>
                         <ul class="feature-list">
                             <li>Non-holiday weekdays ✓</li>
                             <li>All nights ✓</li>
@@ -500,7 +513,7 @@
                     <div class="card-header heading-silver py-3"><h3 class="h5 mb-0">Senior Silver</h3></div>
                     <div class="card-body">
                         <div class="price" data-price-key="silver_senior">Checking price…</div>
-                        <div class="price-note">Wachusett listed price before GPS savings</div>
+                        <div class="price-note">GPS group price</div>
                         <ul class="feature-list">
                             <li>Non-holiday weekdays ✓</li>
                             <li>All nights ✓</li>
@@ -521,7 +534,7 @@
                     <div class="card-header heading-bronze py-3"><h3 class="h5 mb-0">Bronze</h3></div>
                     <div class="card-body">
                         <div class="price" data-price-key="bronze_adult">Checking price…</div>
-                        <div class="price-note">Wachusett listed price before GPS savings</div>
+                        <div class="price-note">GPS group price</div>
                         <ul class="feature-list">
                             <li>All nights ✓</li>
                             <li>Non-holiday Mon–Thu days ✓</li>
@@ -536,7 +549,7 @@
                     <div class="card-header heading-bronze py-3"><h3 class="h5 mb-0">Junior Bronze</h3></div>
                     <div class="card-body">
                         <div class="price" data-price-key="bronze_junior">Checking price…</div>
-                        <div class="price-note">Wachusett listed price before GPS savings</div>
+                        <div class="price-note">GPS group price</div>
                         <ul class="feature-list">
                             <li>All nights ✓</li>
                             <li>Non-holiday Mon–Thu days ✓</li>
@@ -551,7 +564,7 @@
                     <div class="card-header heading-bronze py-3"><h3 class="h5 mb-0">Senior Bronze</h3></div>
                     <div class="card-body">
                         <div class="price" data-price-key="bronze_senior">Checking price…</div>
-                        <div class="price-note">Wachusett listed price before GPS savings</div>
+                        <div class="price-note">GPS group price</div>
                         <ul class="feature-list">
                             <li>All nights ✓</li>
                             <li>Non-holiday Mon–Thu days ✓</li>
@@ -584,7 +597,7 @@
         </div>
 
         <div class="alert alert-light border text-center" role="note">
-            <strong>Price note:</strong> prices above are Wachusett's public listed prices. Any eligible GPS group savings are calculated by Wachusett after you enter <strong>SKICLUB</strong> at checkout. Prices and availability can change.
+            <strong>Price note:</strong> the crossed-out amount is Wachusett's regular pass price; the larger amount is its GPS group price. Enter <strong>SKICLUB</strong> during checkout. Prices and availability can change.
             <div class="mt-2"><a href="https://www.wachusett.com/tickets-passes/season-passes/season-passes/season-pass-comparisons/" target="_blank" rel="noopener">View the official pass comparison</a></div>
         </div>
     </section>
@@ -603,7 +616,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <a class="btn btn-primary" href="https://www.wachusett.com/tickets-passes/season-passes/season-passes/" target="_blank" rel="noopener">Continue</a>
+                <a class="btn btn-primary" href="https://www.wachusett.com/tickets-passes/group-season-passes/group-season-passes/" target="_blank" rel="noopener">Continue</a>
             </div>
         </div>
     </div>
@@ -618,7 +631,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 <script>
-    const OFFICIAL_PASS_URL = 'https://www.wachusett.com/tickets-passes/season-passes/season-passes/';
+    const OFFICIAL_PASS_URL = 'https://www.wachusett.com/tickets-passes/group-season-passes/group-season-passes/';
     const priceElements = document.querySelectorAll('[data-price-key]');
     const priceStatus = document.getElementById('price-status');
     const currency = new Intl.NumberFormat('en-US', {
@@ -635,9 +648,15 @@
         .then((data) => {
             priceElements.forEach((element) => {
                 const pass = data.passes[element.dataset.priceKey];
-                element.textContent = pass && pass.published && Number.isFinite(pass.price)
-                    ? currency.format(pass.price)
-                    : 'See current price';
+                const note = element.nextElementSibling;
+                if (pass && pass.published && Number.isFinite(pass.regular_price) && Number.isFinite(pass.gps_price)) {
+                    const savings = pass.regular_price - pass.gps_price;
+                    element.innerHTML = `<span class="regular-price"><span class="visually-hidden">Regular price </span><del>${currency.format(pass.regular_price)}</del></span><span class="gps-price"><span class="visually-hidden">GPS price </span>${currency.format(pass.gps_price)}</span>`;
+                    note.textContent = savings > 0 ? `GPS group price · Save ${currency.format(savings)}` : 'GPS group price';
+                } else {
+                    element.textContent = 'See current price';
+                    note.textContent = 'Check current GPS pricing with Wachusett';
+                }
             });
 
             const updated = new Date(data.updated_at);

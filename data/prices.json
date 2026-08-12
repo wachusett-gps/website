@@ -1,78 +1,99 @@
 {
-  "source": "https://www.wachusett.com/tickets-passes/season-passes/season-passes/",
+  "sources": {
+    "regular": "https://www.wachusett.com/tickets-passes/season-passes/season-passes/",
+    "gps": "https://www.wachusett.com/tickets-passes/group-season-passes/group-season-passes/"
+  },
   "season": "26/27",
-  "updated_at": "2026-08-11T18:00:00Z",
+  "updated_at": "2026-08-12T01:34:25Z",
   "passes": {
-    "gold_adult": {
-      "product_id": 10,
-      "variant_id": 11,
-      "product_name": "26/27 Gold Season Pass",
-      "variant_name": "Adult (13-64)",
-      "price": 869,
-      "published": true
-    },
-    "gold_junior": {
-      "product_id": 10,
-      "variant_id": 1542,
-      "product_name": "26/27 Gold Season Pass",
-      "variant_name": "Junior (6-12)",
-      "price": 649,
-      "published": true
-    },
-    "gold_senior": {
-      "product_id": 10,
-      "variant_id": 1543,
-      "product_name": "26/27 Gold Season Pass",
-      "variant_name": "Senior (65+)",
-      "price": 649,
-      "published": true
-    },
-    "silver_adult": {
-      "product_id": 11,
-      "variant_id": 12,
-      "product_name": "26/27 Silver Season Pass",
-      "variant_name": "Adult (13-64)",
-      "price": 649,
-      "published": true
-    },
-    "silver_junior": {
-      "product_id": 11,
-      "variant_id": 2274,
-      "product_name": "26/27 Silver Season Pass",
-      "variant_name": "Junior (6-12)",
-      "price": 589,
-      "published": true
-    },
-    "silver_senior": {
-      "product_id": 11,
-      "variant_id": 2275,
-      "product_name": "26/27 Silver Season Pass",
-      "variant_name": "Senior (65+)",
-      "price": 589,
-      "published": true
-    },
     "bronze_adult": {
-      "product_id": 12,
-      "variant_id": 13,
-      "product_name": "26/27 Bronze Season Pass",
       "variant_name": "Adult (13-64)",
-      "price": 499,
+      "regular_product_id": 12,
+      "regular_variant_id": 13,
+      "regular_price": 499,
+      "gps_product_id": 3,
+      "gps_variant_id": 3,
+      "gps_price": 489,
       "published": true
     },
     "bronze_junior": {
-      "product_id": 12,
-      "variant_id": 1540,
-      "product_name": "26/27 Bronze Season Pass",
       "variant_name": "Junior (6-12)",
-      "price": 479,
+      "regular_product_id": 12,
+      "regular_variant_id": 1540,
+      "regular_price": 479,
+      "gps_product_id": 3,
+      "gps_variant_id": 1544,
+      "gps_price": 469,
       "published": true
     },
     "bronze_senior": {
-      "product_id": 12,
-      "variant_id": 1541,
-      "product_name": "26/27 Bronze Season Pass",
       "variant_name": "Senior (65+)",
-      "price": 479,
+      "regular_product_id": 12,
+      "regular_variant_id": 1541,
+      "regular_price": 479,
+      "gps_product_id": 3,
+      "gps_variant_id": 1545,
+      "gps_price": 469,
+      "published": true
+    },
+    "gold_adult": {
+      "variant_name": "Adult (13-64)",
+      "regular_product_id": 10,
+      "regular_variant_id": 11,
+      "regular_price": 869,
+      "gps_product_id": 1,
+      "gps_variant_id": 1,
+      "gps_price": 859,
+      "published": true
+    },
+    "gold_junior": {
+      "variant_name": "Junior (6-12)",
+      "regular_product_id": 10,
+      "regular_variant_id": 1542,
+      "regular_price": 649,
+      "gps_product_id": 1,
+      "gps_variant_id": 1546,
+      "gps_price": 639,
+      "published": true
+    },
+    "gold_senior": {
+      "variant_name": "Senior (65+)",
+      "regular_product_id": 10,
+      "regular_variant_id": 1543,
+      "regular_price": 649,
+      "gps_product_id": 1,
+      "gps_variant_id": 1547,
+      "gps_price": 639,
+      "published": true
+    },
+    "silver_adult": {
+      "variant_name": "Adult (13-64)",
+      "regular_product_id": 11,
+      "regular_variant_id": 12,
+      "regular_price": 649,
+      "gps_product_id": 2,
+      "gps_variant_id": 2,
+      "gps_price": 639,
+      "published": true
+    },
+    "silver_junior": {
+      "variant_name": "Junior (6-12)",
+      "regular_product_id": 11,
+      "regular_variant_id": 2274,
+      "regular_price": 589,
+      "gps_product_id": 2,
+      "gps_variant_id": 2276,
+      "gps_price": 579,
+      "published": true
+    },
+    "silver_senior": {
+      "variant_name": "Senior (65+)",
+      "regular_product_id": 11,
+      "regular_variant_id": 2275,
+      "regular_price": 589,
+      "gps_product_id": 2,
+      "gps_variant_id": 2277,
+      "gps_price": 579,
       "published": true
     }
   }
